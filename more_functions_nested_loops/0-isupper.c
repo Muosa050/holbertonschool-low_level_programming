@@ -1,11 +1,11 @@
-#include <main.h>
-#include <stdio.h>
+#include "main.h"
 
 /**
-*main - check for uppercase
+*_isupper -  check the leter upercase
 *
-*return allwy 0
+*@c:  is the leter ASCI
 *
+*Return: (1) if it's upper (0) if it lower
 */
 
 int _isupper(int c)
