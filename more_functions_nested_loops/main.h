@@ -5,5 +5,6 @@
 int _putchar(char c);
 int _isupper(int c);
 int _isdigit(int d);
+int mul(int d1, int d2);
 
 #endif
