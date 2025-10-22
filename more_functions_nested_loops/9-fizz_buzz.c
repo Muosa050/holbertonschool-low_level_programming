@@ -32,5 +32,5 @@ if (i < 100)
 printf(" ");
 }
 putchar('\n');
-return (i);
+return (0);
 }
