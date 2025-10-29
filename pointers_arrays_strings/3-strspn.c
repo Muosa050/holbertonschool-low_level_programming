@@ -13,6 +13,9 @@ unsigned int _strspn(char *s, char *accept)
 {
 int i = 0;
 int j = 0;
+int y;
+int x;
+int count = 0;
 while (accept[i] != '\0')
 {
 i++;
@@ -21,14 +24,12 @@ while (s[j] != '\0' && s[j] != ',' && s[j] != ' ')
 {
 j++;
 }
-int y, x;
-int count = 0;
 for (y = 0 ; y <= i ; y++)
 {
 for (x = 0 ; x <= j ; x++)
 {
 if (s[x] == accept[y])
-count ++;
+count++;
 else
 continue;
 }
