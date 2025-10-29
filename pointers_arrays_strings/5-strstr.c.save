@@ -1,0 +1,6 @@
+#include "main.h"
+
+/**
+*_strstr - function give the exact matched word
+*
+*@haystack: 
