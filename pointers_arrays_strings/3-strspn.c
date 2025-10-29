@@ -1,39 +1,29 @@
 #include "main.h"
 
 /**
-*_strspn - give the number of letters that are existing in accept
-*
-*@s: the statment to see first word from
-*@accept: the letters accepted to be counted
-*
-*Return: the number
-*/
-
+ * _strspn - gets the length of a prefix substring
+ * @s: the string to scan
+ * @accept: the characters to match
+ *
+ * Return: number of bytes in the initial segment of s
+ *         which consist only of bytes from accept
+ */
 unsigned int _strspn(char *s, char *accept)
 {
-int i = 0;
-int j = 0;
-int y;
-int x;
-int count = 0;
-while (accept[i] != '\0')
+unsigned int i = 0, j;
+
+while (s[i] != '\0')
 {
-i++;
-}
-while (s[j] != '\0' && s[j] != ',' && s[j] != ' ')
+j = 0;
+while (accept[j] != '\0')
 {
+if (s[i] == accept[j])
+break;
 j++;
 }
-for (y = 0 ; y <= i ; y++)
-{
-for (x = 0 ; x <= j ; x++)
-{
-if (s[x] == accept[y])
-count++;
-else
-continue;
+if (accept[j] == '\0')
+break;
+i++;
 }
+return (i);
 }
-return (count);
-}
-
