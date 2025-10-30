@@ -1,27 +1,14 @@
 #include "main.h"
 
-/*
-*_strlen_recursion - figure out legnth of string
-*
-*@s: is the string
-*
-*Return: i the legnth
-*/
-int _c(char *n , int x)
-{
-if (n[x] == '\0')
-{
-return (x);
-}
-
-return _c(n , x + 1);
-
-}
+/**
+ * _strlen_recursion - Returns the length of a string using recursion.
+ * @s: Pointer to the null-terminated string to measure.
+ *
+ * Return: The number of characters in the string (excluding null terminator).
+ */
 int _strlen_recursion(char *s)
 {
-int i ;
-int temp = 0;
-char *c = s;
-i = _c(c , temp);
-return (i);
+	if (*s == '\0')
+		return (0);
+	return (1 + _strlen_recursion(s + 1));
 }
