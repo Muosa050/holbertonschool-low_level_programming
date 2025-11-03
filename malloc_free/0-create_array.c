@@ -17,9 +17,9 @@ if (size == 0)
 return (NULL);
 
 array = malloc(size * sizeof(char));
-for (i = 0 ; i < size ; i++)
-array[i] = c;
 if (array == NULL)
 return (NULL);
+for (i = 0 ; i < size ; i++)
+array[i] = c;
 return (array);
 }
