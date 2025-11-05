@@ -1,11 +1,11 @@
 #include "main.h"
 #include <stdlib.h>
 /**
-*malloc_checked - recieving memory spaces
+* malloc_checked - recieving memory spaces
 *
 *@b: number of locations i want
 *
-*Return:
+*Return: pointer for the address or null in fail
 */
 
 void *malloc_checked(unsigned int b)
