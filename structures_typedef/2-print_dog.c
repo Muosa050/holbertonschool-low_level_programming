@@ -1,6 +1,6 @@
-#include "dog.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include "dog.h"
+
 /**
  * print_dog - prints a struct dog
  * @d: pointer to struct dog to print
@@ -9,15 +9,15 @@
  * If an element is NULL, prints (nil) instead.
  * If d is NULL, nothing is printed.
  */
-
 void print_dog(struct dog *d)
 {
 if (d == NULL)
 return;
+
 if (d->name == NULL)
-printf("Name: nil\n");
+d->name = "(nil)";
 if (d->owner == NULL)
-printf("Owner: nil\n");
+d->owner = "(nil)";
 
 printf("Name: %s\n", d->name);
 printf("Age: %f\n", d->age);
