@@ -5,7 +5,7 @@
 *
 *@array: contain the elements in integer
 *@size: number of array elements
-*@cmd: function pointer to compare el
+*@cmp: function pointer to compare el
 *
 *Return: -1 if no elements matches or if size less then or equal 0
 */
