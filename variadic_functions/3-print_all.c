@@ -1,48 +1,48 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
-
 /**
  * print_all - prints anything
- * @format: list of types of arguments
+ * @format: list of argument types
  *
- * Return: nothing
+ * Return: SUCCESS
  */
 void print_all(const char * const format, ...)
 {
 va_list args;
-unsigned int i = 0, printed = 0;
+int i = 0, j = 0, printed = 0;
 char *str;
-char c;
-
+char types[] = "cifs";
 va_start(args, format);
-
 while (format && format[i])
 {
-c = format[i];
-if (c == 'c' || c == 'i' || c == 'f' || c == 's')
+j = 0;
+while (types[j])
+{
+if (format[i] == types[j])
 {
 if (printed)
 printf(", ");
-if (c == 'c')
+if (types[j] == 'c')
 printf("%c", va_arg(args, int));
-if (c == 'i')
+if (types[j] == 'i')
 printf("%d", va_arg(args, int));
-if (c == 'f')
+if (types[j] == 'f')
 printf("%f", (double)va_arg(args, double));
-if (c == 's')
+if (types[j] == 's')
 {
 str = va_arg(args, char *);
 if (str == NULL)
 printf("(nil)");
-else
+if (str)
 printf("%s", str);
 }
 printed = 1;
 }
+j++;
+}
 i++;
 }
-
 printf("\n");
 va_end(args);
 }
