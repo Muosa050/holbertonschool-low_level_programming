@@ -1,93 +1,66 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
-/**
- * print_char - prints a character
- * @args: argument list
- * @first: flag to indicate if it's the first argument
- */
-void print_char(va_list args, int *first)
+
+/* Helper functions */
+void print_char(va_list args)
 {
-if (!(*first))
-printf(", ");
 printf("%c", va_arg(args, int));
-*first = 0;
 }
-/**
- * print_int - prints an integer
- * @args: argument list
- * @first: flag to indicate if it's the first argument
- */
-void print_int(va_list args, int *first)
+
+void print_int(va_list args)
 {
-if (!(*first))
-printf(", ");
 printf("%d", va_arg(args, int));
-*first = 0;
 }
-/**
- * print_float - prints a float
- * @args: argument list
- * @first: flag to indicate if it's the first argument
- */
-void print_float(va_list args, int *first)
+
+void print_float(va_list args)
 {
-if (!(*first))
-printf(", ");
-printf("%f", va_arg(args, double));
-*first = 0;
+printf("%f", (double)va_arg(args, double));
 }
-/**
- * print_string - prints a string
- * @args: argument list
- * @first: flag to indicate if it's the first argument
- */
-void print_string(va_list args, int *first)
+
+void print_string(va_list args)
 {
-char *str;
-if (!(*first))
-printf(", ");
-str = va_arg(args, char *);
-if (str == NULL)
+char *s = va_arg(args, char *);
+if (s == NULL)
+{
 printf("(nil)");
-else
-printf("%s", str);
-*first = 0;
+return;
+}
+printf("%s", s);
 }
 /**
- * print_all - prints anything based on format specifier
- * @format: list of types of arguments passed to the function
- * c: char
- * i: integer
- * f: float
- * s: char * (if the string is NULL, print (nil) instead)
- * any other char should be ignored
+ * print_all - prints anything
+ * @format: list of types of arguments
+ *
+ * Return: SUCCESS
  */
 void print_all(const char * const format, ...)
 {
 va_list args;
-int i = 0;
-int first = 1;
+int i = 0, j = 0, printed = 0;
+char types[] = "cifs";
+void (*funcs[])(va_list) = {
+print_char, print_int, print_float, print_string
+};
 va_start(args, format);
-while (format && format[i])
+while (format && format[i])    /* 1st while */
 {
-switch (format[i])
+j = 0;
+while (types[j])              /* 2nd while */
 {
-case 'c':
-print_char(args, &first);
-break;
-case 'i':
-print_int(args, &first);
-break;
-case 'f':
-print_float(args, &first);
-break;
-case 's':
-print_string(args, &first);
-break;
+/* ---- 1st if ---- */
+if (format[i] == types[j])
+{
+/* ---- 2nd if ---- */
+if (printed)
+printf(", ");
+funcs[j](args);
+printed = 1;
+}
+j++;
 }
 i++;
 }
-va_end(args);
 printf("\n");
+va_end(args);
 }
