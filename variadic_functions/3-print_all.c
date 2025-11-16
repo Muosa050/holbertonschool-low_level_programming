@@ -3,43 +3,44 @@
 #include <stdarg.h>
 /**
  * print_all - prints anything
- * @format: list of argument types
+ * @format: list of types of arguments
  *
  * Return: SUCCESS
  */
 void print_all(const char * const format, ...)
 {
 va_list args;
-int i = 0, j = 0, printed = 0;
+int i = 0, printed = 0;
 char *str;
-char types[] = "cifs";
 va_start(args, format);
 while (format && format[i])
 {
-j = 0;
-while (types[j])
-{
-if (format[i] == types[j])
-{
 if (printed)
 printf(", ");
-if (types[j] == 'c')
-printf("%c", va_arg(args, int));
-if (types[j] == 'i')
-printf("%d", va_arg(args, int));
-if (types[j] == 'f')
-printf("%f", (double)va_arg(args, double));
-if (types[j] == 's')
+switch (format[i])
 {
+case 'c':
+printf("%c", va_arg(args, int));
+printed = 1;
+break;
+case 'i':
+printf("%d", va_arg(args, int));
+printed = 1;
+break;
+case 'f':
+printf("%f", (double)va_arg(args, double));
+printed = 1;
+break;
+case 's':
 str = va_arg(args, char *);
 if (str == NULL)
 printf("(nil)");
-if (str)
+else
 printf("%s", str);
-}
 printed = 1;
-}
-j++;
+break;
+default:
+printed = printed;
 }
 i++;
 }
