@@ -2,48 +2,92 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * print_all - prints anything
- * @format: list of types of arguments
- *
- * Return: SUCCESS
+ * print_char - prints a character
+ * @args: argument list
+ * @first: flag to indicate if it's the first argument
  */
-void print_all(const char * const format, ...)
+void print_char(va_list args, int *first)
 {
-va_list args;
-int i = 0, printed = 0;
-char *str;
-va_start(args, format);
-while (format && format[i])
-{
-if (printed)
+if (!(*first))
 printf(", ");
-switch (format[i])
-{
-case 'c':
 printf("%c", va_arg(args, int));
-printed = 1;
-break;
-case 'i':
+*first = 0;
+}
+/**
+ * print_int - prints an integer
+ * @args: argument list
+ * @first: flag to indicate if it's the first argument
+ */
+void print_int(va_list args, int *first)
+{
+if (!(*first))
+printf(", ");
 printf("%d", va_arg(args, int));
-printed = 1;
-break;
-case 'f':
-printf("%f", (double)va_arg(args, double));
-printed = 1;
-break;
-case 's':
+*first = 0;
+}
+/**
+ * print_float - prints a float
+ * @args: argument list
+ * @first: flag to indicate if it's the first argument
+ */
+void print_float(va_list args, int *first)
+{
+if (!(*first))
+printf(", ");
+printf("%f", va_arg(args, double));
+*first = 0;
+}
+/**
+ * print_string - prints a string
+ * @args: argument list
+ * @first: flag to indicate if it's the first argument
+ */
+void print_string(va_list args, int *first)
+{
+char *str;
+if (!(*first))
+printf(", ");
 str = va_arg(args, char *);
 if (str == NULL)
 printf("(nil)");
 else
 printf("%s", str);
-printed = 1;
+*first = 0;
+}
+/**
+ * print_all - prints anything based on format specifier
+ * @format: list of types of arguments passed to the function
+ * c: char
+ * i: integer
+ * f: float
+ * s: char * (if the string is NULL, print (nil) instead)
+ * any other char should be ignored
+ */
+void print_all(const char * const format, ...)
+{
+va_list args;
+int i = 0;
+int first = 1;
+va_start(args, format);
+while (format && format[i])
+{
+switch (format[i])
+{
+case 'c':
+print_char(args, &first);
 break;
-default:
-printed = printed;
+case 'i':
+print_int(args, &first);
+break;
+case 'f':
+print_float(args, &first);
+break;
+case 's':
+print_string(args, &first);
+break;
 }
 i++;
 }
-printf("\n");
 va_end(args);
+printf("\n");
 }
