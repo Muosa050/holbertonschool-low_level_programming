@@ -16,3 +16,4 @@ direct deleting.
 first make a structure for the nodes (data, next addr)
 use the structure to inseart your elments.
 
+
