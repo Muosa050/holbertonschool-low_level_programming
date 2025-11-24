@@ -1,19 +1,26 @@
-# Singly linked list 
----
-## shape
-node with a cell contain data & cell contain the address of the next data in the list.
+#Singly Linked List
+==================
 
-## searching
-forward cell by cell.
+##Shape
+-----
+A node contains two parts:
+- A cell that holds the data
+- A cell that holds the address of the next node
 
-## insearting
-easy to inseart to the list no need to shift the elements.
+##Searching
+---------
+Traversal happens forward, node by node.
 
-## delation
-direct deleting.
+##Inserting
+---------
+Easy to insert into the list.
+No need to shift elements.
 
-## creation
-first make a structure for the nodes (data, next addr)
-use the structure to inseart your elments.
+##Deletion
+--------
+Nodes can be deleted directly.
 
-
+##Creation
+--------
+- First, create a structure for the node (data and next pointer).
+- Then use this structure to insert your elements into the list.
